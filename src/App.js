@@ -1,25 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from "./components/Header";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { useState, createContext, useContext } from "react";
+export const ThemeContext = createContext("light");
+
+
+export default () => {  
+
+  const [theme, setTheme] = useState('light')
+
+  const toggleTheme = (event) =>  setTheme(theme === 'light' ? 'dark' : 'light')
+  
+  return <ThemeContext.Provider value={{theme, toggleTheme}}>
+    <Header/>
+  </ThemeContext.Provider>
 }
 
-export default App;
+
+ 
